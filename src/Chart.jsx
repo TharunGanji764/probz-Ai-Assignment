@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
-import './chart.css'; // Assuming you have the CSS file for styling
+import './chart.css';
 
 const Chart = () => {
   const [data, setData] = useState([]);
@@ -12,15 +12,15 @@ const Chart = () => {
       .then(response => response.json())
       .then(data => {
         setData(data);
-        setFilteredData(data); // Initialize with full data for daily view
+        setFilteredData(data);
       });
   }, []);
 
-  const handleTimeframeChange = (newTimeframe) => {
-    setTimeframe(newTimeframe);
+  const handleTimeframe = (newTime) => {
+    setTimeframe(newTime);
     let filteredData;
 
-    switch (newTimeframe) {
+    switch (newTime) {
       case 'daily':
         filteredData = data;
         break;
@@ -83,7 +83,7 @@ const Chart = () => {
   const getStartOfWeek = (date) => {
     const startOfWeek = new Date(date);
     const day = startOfWeek.getDay();
-    const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+    const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1);
     startOfWeek.setDate(diff);
     startOfWeek.setHours(0, 0, 0, 0);
     return startOfWeek;
@@ -98,9 +98,9 @@ const Chart = () => {
     <div className='container'>
       <div className='chart-container'>
         <div className='buttons'>
-          <button onClick={() => handleTimeframeChange('daily')} className='button'>Daily</button>
-          <button onClick={() => handleTimeframeChange('weekly')} className='button'>Weekly</button>
-          <button onClick={() => handleTimeframeChange('monthly')} className='button'>Monthly</button>
+          <button onClick={() => handleTimeframe('daily')} className='button'>Daily</button>
+          <button onClick={() => handleTimeframe('weekly')} className='button'>Weekly</button>
+          <button onClick={() => handleTimeframe('monthly')} className='button'>Monthly</button>
         </div>
         <div className="chart">
           <ResponsiveContainer width="100%" height={400}>
