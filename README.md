@@ -12,5 +12,5 @@ A React.js application that displays a chart using Recharts. The chart supports 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/react-chart-app.git
+   git clone https://github.com/TharunGanji764/probz-Ai-Assignment.git
    cd react-chart-app
